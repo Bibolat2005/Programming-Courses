@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Reviews</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            width: 100%;
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #333;
+        }
+        .average-rating {
+            font-size: 24px;
+            color: #ffcc00;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .review {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 6px solid #3498db;
+        }
+        .review p {
+            margin: 10px 0;
+            font-size: 16px;
+            color: #555;
+        }
+        .review p strong {
+            color: #333;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 15px;
+            margin-top: 15px;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #c0392b;
+        }
+        .rating-highlight {
+            font-size: 48px;
+            color: #ffcc00;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .review .date {
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+        .review .edited {
+            font-size: 12px;
+            color: #95a5a6;
+            margin-left: 5px;
+        }
+        .review p strong {
+            color: #2d3436;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Reviews for {{ course.name }}</h2>
+        
+        <div class="average-rating">Average Rating: 
+            <span class="rating-highlight">{{ average_rating }}</span>
+        </div>
+
+
+        {% for review in reviews %}
+            <div class="review">
+                <p><strong>Review:</strong> {{ review.comment }}</p>
+                <p><strong>Rating:</strong> {{ review.rating }} / 5</p>
+                <p><strong>Author:</strong> {{ review.user.username }}</p>
+                <p><strong>Date created:</strong> {{ review.created_at|date:"F d, Y H:i" }}</p>
+                {% if review.updated_at and review.updated_at > review.created_at %}
+                <p class="date"><strong>Last updated:</strong> {{ review.updated_at|date:"F d, Y H:i" }}<span class="edited"> (edited)</span></p>
+                {% endif %}
+                {% if review.user == request.user %}
+                    <a href="{% url 'update_review' course.slug %}" class="btn" style="background-color: #3498db; margin-right: 10px;">Update</a>
+                    <a href="{% url 'delete_review' course.slug review.id %}" class="btn">Delete</a>
+                {% endif %}
+            </div>
+        {% empty %}
+            <p>No reviews for this course yet.</p>
+        {% endfor %}
+    </div>
+</body>
+</html>

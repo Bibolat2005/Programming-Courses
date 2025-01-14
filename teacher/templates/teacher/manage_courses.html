@@ -1,0 +1,70 @@
+<h1>Manage Courses</h1>
+
+<ul class="courses-list">
+    {% for course in courses %}
+        <li class="course-item">{{ course.name }}</li>
+    {% empty %}
+        <li class="no-courses">No courses assigned.</li>
+    {% endfor %}
+</ul>
+
+<style>
+    /* Заголовок */
+    h1 {
+        color: #343a40;
+        font-size: 2.5rem;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    /* Стили для списка курсов */
+    .courses-list {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    /* Стили для каждого элемента списка */
+    .course-item {
+        font-size: 1.2rem;
+        color: #343a40;
+        background-color: #f9f9f9;
+        padding: 12px;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .course-item:hover {
+        background-color: #007bff;
+        color: white;
+        transform: translateY(-2px);
+    }
+
+    /* Стили для элемента списка, когда курсы отсутствуют */
+    .no-courses {
+        font-size: 1.2rem;
+        color: #999;
+        text-align: center;
+        padding: 12px;
+        border-radius: 8px;
+    }
+
+    /* Адаптивность для мобильных устройств */
+    @media (max-width: 768px) {
+        h1 {
+            font-size: 2rem;
+        }
+
+        .courses-list {
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        .course-item {
+            font-size: 1rem;
+        }
+    }
+</style>

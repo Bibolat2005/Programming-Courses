@@ -1,0 +1,36 @@
+{% extends 'courses/base.html' %}
+{% load static %}
+
+{% block title %}Финальный тест{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>The final exam for the course {{ course.name }}</h2>
+    <form method="post">
+        {% csrf_token %}
+
+        <!-- Dynamic Questions Section with Multiple Choice -->
+        {% if questions %}
+            {% for question, options in questions.items %}
+                <div class="form-group">
+                    <label>{{ question }}</label>
+                    <div>
+                        {% for option in options %}
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="answer_{{ forloop.parentloop.counter }}" value="{{ option }}" required>
+                                <label class="form-check-label">{{ forloop.counter0|add:"a"|upper }}. {{ option }}</label>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <button type="submit" class="btn btn-success mt-3">Отправить</button>
+    </form>
+
+    {% if error_message %}
+    <div class="alert alert-danger mt-3">{{ error_message }}</div>
+    {% endif %}
+</div>
+{% endblock %}

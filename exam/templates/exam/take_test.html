@@ -1,0 +1,99 @@
+<style>
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 30px;
+    background: linear-gradient(135deg, #f3f8ff, #d1e6fa);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+}
+
+
+h5 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2rem;
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 30px;
+}
+
+
+.mb-4 {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.1rem;
+    color: #34495e;
+    margin-bottom: 10px;
+}
+
+
+label {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    color: #34495e;
+    display: block;
+    padding: 5px 0;
+}
+
+
+button {
+    display: inline-block;
+    background-color: #3498db;
+    color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.2rem;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 10px 20px rgba(52, 152, 219, 0.3);
+    text-align: center;
+    margin-top: 20px;
+}
+
+
+button:hover {
+    background-color: #2980b9;
+    box-shadow: 0 15px 30px rgba(41, 128, 185, 0.4);
+}
+</style>
+
+
+
+
+
+{% extends 'courses/base.html' %}
+{% block content %}
+<div class="container mt-3">
+    <h5>Video test: {{ video.title }}</h5>
+    <form method="post">
+        {% csrf_token %}
+        {% for question in questions %}
+            <div class="mb-4">
+                <p>{{ question.question_text }}</p>
+                <label>
+                    <input type="radio" name="{{ question.id }}" value="1"> {{ question.option_1 }}
+                </label><br>
+                <label>
+                    <input type="radio" name="{{ question.id }}" value="2"> {{ question.option_2 }}
+                </label><br>
+                <label>
+                    <input type="radio" name="{{ question.id }}" value="3"> {{ question.option_3 }}
+                </label><br>
+                <label>
+                    <input type="radio" name="{{ question.id }}" value="4"> {{ question.option_4 }}
+                </label>
+            </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary">Submit a test</button>
+    </form>
+</div>
+{% endblock %}

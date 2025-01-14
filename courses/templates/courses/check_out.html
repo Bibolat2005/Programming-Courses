@@ -1,0 +1,31 @@
+<style>
+.container {
+    background-color: #d8e4ef; 
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn-success {
+    background-color: #0cb9c9;
+    border-color: #28a7a5;
+}
+
+</style>
+
+{% extends 'courses/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="display-4 text-center text-primary">Checkout Page</h1>
+    <hr class="my-4">
+    <h2 class="text-center">You are going to enroll in <strong>{{ course.name }}</strong></h2>
+    <hr class="my-4">
+    <div class="text-center">
+        <form method="POST" action="{% url 'product_page' course.slug %}" class="form-inline justify-content-center">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-success btn-lg">Pay with Stripe</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

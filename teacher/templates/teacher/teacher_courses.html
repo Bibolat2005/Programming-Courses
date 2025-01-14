@@ -1,0 +1,111 @@
+<h1>Your Courses</h1>
+
+<ul class="courses-list">
+    {% for course in courses %}
+        <li class="course-item">
+            <strong>{{ course.name }}</strong> <br>
+            <span class="course-description">{{ course.description }}</span>
+            <ul class="students-list">
+                {% for student in course.users.all %}
+                    <li class="student-item">
+                        {{ student.username }}
+                        <a href="{% url 'remove_student_from_course' student.id course.id %}" class="btn btn-danger">Remove</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </li>
+    {% endfor %}
+</ul>
+
+<style>
+    /* Заголовок */
+    h1 {
+        color: #343a40;
+        font-size: 2.5rem;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    /* Стили для списка курсов */
+    .courses-list {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    /* Стили для элемента курса */
+    .course-item {
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .course-item strong {
+        font-size: 1.4rem;
+        color: #007bff;
+    }
+
+    .course-description {
+        font-size: 1.1rem;
+        color: #555;
+        margin-left: 10px;
+    }
+
+    /* Стили для списка студентов */
+    .students-list {
+        list-style-type: none;
+        padding: 0;
+        margin: 15px 0;
+    }
+
+    /* Стили для каждого студента */
+    .student-item {
+        font-size: 1.1rem;
+        color: #343a40;
+        padding: 8px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #ddd;
+    }
+
+    /* Кнопка удаления студента */
+    .btn-danger {
+        padding: 5px 10px;
+        background-color: #dc3545;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .btn-danger:hover {
+        background-color: #c82333;
+        transform: translateY(-2px);
+    }
+
+    /* Адаптивность для мобильных устройств */
+    @media (max-width: 768px) {
+        h1 {
+            font-size: 2rem;
+        }
+
+        .courses-list {
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        .course-item {
+            padding: 15px;
+        }
+
+        .student-item {
+            font-size: 1rem;
+        }
+    }
+</style>

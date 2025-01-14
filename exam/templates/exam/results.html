@@ -1,0 +1,60 @@
+<style>
+
+
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 30px;
+    background: linear-gradient(135deg, #fef9f9, #f4f4f4);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    text-align: center;
+}
+
+
+h5 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.2rem;
+    color: #34495e;
+    margin-bottom: 20px;
+}
+
+
+p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.2rem;
+    color: #2c3e50;
+    margin-bottom: 30px;
+}
+
+
+a.btn {
+    display: inline-block;
+    padding: 12px 40px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1rem;
+    color: #ffffff;
+    background-color: #e74c3c;
+    border: none;
+    border-radius: 25px;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(231, 76, 60, 0.4);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+a.btn:hover {
+    background-color: #c0392b;
+    box-shadow: 0 12px 30px rgba(192, 57, 43, 0.5);
+}
+
+</style>
+
+
+
+<div class="container mt-3">
+    <h5>Test results</h5>
+    <p>You scored {{ score }} out of {{ total }}.</p>
+    <a href="{% url 'course_page' course.slug %}" class="btn btn-primary">Return to course</a>
+</div>

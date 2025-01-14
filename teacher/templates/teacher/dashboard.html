@@ -1,0 +1,215 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Welcome, {{ teacher.user.first_name }} {{ teacher.user.last_name }}</h1>
+            <p>{{ teacher.bio }}</p>
+        </header>
+
+        <nav class="nav">
+            <ul class="nav-list">
+                <li><a href="{% url 'teacher_dashboard' %}" class="nav-item">Dashboard</a></li>
+                <li><a href="{% url 'edit_teacher_profile' %}" class="nav-item">Edit Profile</a></li>
+                <li><a href="{% url 'manage_courses' %}" class="nav-item">Manage Courses</a></li>
+                <li><a href="{% url 'teacher_courses' %}" class="nav-item">Your Courses</a></li>
+                <li><a href="{% url 'create_course' %}" class="nav-item">Create a Course</a></li>
+                <li><a href="{% url 'add_student_to_course' %}" class="nav-item">Add Student to Course</a></li>
+            </ul>
+        </nav>
+
+        <section class="dashboard-stats">
+            <h2>Quick Overview</h2>
+            <p>Here you can manage all the aspects of your teaching responsibilities.</p>
+            <ul class="overview-list">
+                <li>
+                    <a href="{% url 'teacher_courses' %}" class="overview-item">
+                        <h3>Your Courses</h3>
+                        <p>View and manage your active courses.</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'manage_courses' %}" class="overview-item">
+                        <h3>Manage Courses</h3>
+                        <p>See the courses you are teaching and their details.</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'create_course' %}" class="overview-item">
+                        <h3>Create a Course</h3>
+                        <p>Set up new courses for your students.</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'add_student_to_course' %}" class="overview-item">
+                        <h3>Add Students</h3>
+                        <p>Assign students to your courses.</p>
+                    </a>
+                </li>
+            </ul>
+        </section>
+
+        <footer class="footer">
+            <p>&copy; 2024 EasyCode Educational Platform</p>
+        </footer>
+    </div>
+</body>
+</html>
+<style>
+    /* Общие стили для body */
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f4f4f9;
+        margin: 0;
+        padding: 0;
+        color: #333;
+    }
+
+    /* Контейнер для всего содержимого */
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    /* Стили для заголовка */
+    .header {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .header h1 {
+        color: #007bff;
+        font-size: 2.5rem;
+    }
+
+    .header p {
+        color: #555;
+        font-size: 1.1rem;
+    }
+
+    /* Стили для навигации */
+    nav .nav-list {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        padding: 0;
+        margin: 0;
+        gap: 30px;  /* Увеличиваем расстояние между кнопками */
+        flex-wrap: wrap; /* Элементы могут переноситься на новую строку */
+        margin-bottom: 40px;
+    }
+
+    nav .nav-list li {
+        display: inline;
+    }
+
+    nav .nav-list li a {
+        text-decoration: none;
+        background-color: #007bff;
+        color: white;
+        padding: 12px 25px;
+        border-radius: 5px;
+        font-size: 1.1rem;
+        font-weight: 500;
+        transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        display: block;
+        white-space: nowrap; /* Запрещаем перенос текста */
+    }
+
+    nav .nav-list li a:hover {
+        background-color: #0056b3;
+        transform: translateY(-3px);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Стили для основной секции статистики */
+    .dashboard-stats {
+        background-color: white;
+        border-radius: 8px;
+        padding: 40px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 40px;
+    }
+
+    .dashboard-stats h2 {
+        font-size: 2.2rem;
+        color: #007bff;
+        margin-bottom: 20px;
+    }
+
+    .dashboard-stats p {
+        font-size: 1.1rem;
+        color: #555;
+        margin-bottom: 30px;
+    }
+
+    .overview-list {
+        display: flex;
+        justify-content: space-between; /* Элементы распределяются равномерно */
+        gap: 30px; /* Добавляем расстояние между элементами */
+        flex-wrap: nowrap; /* Элементы не переносятся на новую строку */
+        margin-top: 20px; /* Отступ сверху */
+    }
+
+    .overview-item {
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        width: 23%; /* Устанавливаем фиксированную ширину элементов */
+        text-align: center;
+        
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .overview-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .overview-item h3 {
+        color: #007bff;
+        font-size: 1.5rem;
+    }
+
+    .overview-item p {
+        color: #555;
+    }
+
+    /* Стили для футера */
+    footer {
+        text-align: center;
+        padding: 20px;
+        background-color: #333;
+        color: white;
+        font-size: 1rem;
+        margin-top: 50px;
+    }
+
+    /* Мобильная адаптивность */
+    @media (max-width: 768px) {
+        .overview-list {
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .overview-item {
+            width: 80%; /* Уменьшаем ширину на маленьких экранах */
+        }
+    }
+
+    /* Еще более мелкая адаптивность для очень маленьких экранов */
+    @media (max-width: 480px) {
+        .overview-item {
+            width: 90%; /* Еще больше уменьшаем ширину на маленьких экранах */
+        }
+    }
+</style>

@@ -1,0 +1,111 @@
+{% block content %}
+
+<style>
+    body {
+        background-color: #f0f2f5; 
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .container {
+        max-width: 600px;
+        background-color: white;
+        padding: 30px; 
+        border-radius: 15px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        animation: fadeIn 1s ease-in-out;
+        display: flex;
+        flex-direction: column;
+        margin-top: 150px; 
+    }
+
+    h1 {
+        font-size: 1.5rem; 
+        text-align: center;
+        color: #0d47a1;
+        margin-bottom: 15px; 
+    }
+
+    hr {
+        border: none;
+        height: 2px;
+        background-color: #0d47a1;
+        margin-bottom: 15px; 
+    }
+
+    form {
+        display: flex;
+        flex-direction: column; 
+        gap: 5px; 
+    }
+
+    input[type="text"], input[type="email"], input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        transition: border-color 0.3s;
+        font-size: 16px;
+    }
+
+    input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus {
+        border-color: #0d47a1;
+        outline: none;
+    }
+
+    input[type="submit"] {
+        background-color: #0d47a1;
+        color: white;
+        padding: 12px;
+        font-size: 18px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s, box-shadow 0.3s;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #1565c0;
+        box-shadow: 0 4px 10px rgba(21, 101, 192, 0.2);
+    }
+
+    input[type="submit"]:active {
+        background-color: #0d47a1;
+        box-shadow: 0 2px 5px rgba(21, 101, 192, 0.4);
+    }
+
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+        100% {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+</style>
+
+<div class="container">
+    <h1>Sign Up</h1>
+    <hr>
+
+    <div>
+        <form method="POST" action="/signup/">
+            {% csrf_token %}
+            {{ form.as_p }} 
+
+            <input type="submit" value="Register">
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+
+
+
+
+

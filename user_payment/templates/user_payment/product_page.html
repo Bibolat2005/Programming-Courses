@@ -1,0 +1,67 @@
+<!-- user_payment/templates/user_payment/product_page.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .product-container {
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+        }
+        .product-title {
+            font-size: 2.5rem;
+            color: #007bff;
+        }
+        .product-description {
+            font-size: 1.2rem;
+            color: #333333;
+            margin: 20px 0;
+        }
+        .buy-button {
+            background-color: #28a745;
+            color: white;
+            font-size: 1.5rem;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .buy-button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="product-container text-center">
+            <h1 class="product-title">Product: {{ course.title }}</h1>
+            <p class="product-description">Description: {{ course.description }}</p>
+
+            {% if has_purchased %}
+                <div class="alert alert-success">
+                    You have already purchased this course.
+                </div>
+            {% else %}
+
+                <form method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="buy-button">Buy Now</button>
+                </form>
+            {% endif %}
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<h1>Add Student to Course</h1>
+
+<form method="POST" class="student-form">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="id_student">Select Student</label>
+        {{ form.student }}
+    </div>
+    <div class="form-group">
+        <label for="id_course">Select Course</label>
+        {{ form.course }}
+    </div>
+    <button type="submit" class="btn btn-primary">Add Student</button>
+</form>
+
+<style>
+    /* Заголовок */
+    h1 {
+        color: #343a40;
+        font-size: 2.5rem;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    /* Стили для формы */
+    .student-form {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 30px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Стили для групп элементов формы */
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    /* Стили для лейблов */
+    .form-group label {
+        font-size: 1.1rem;
+        color: #343a40;
+        margin-bottom: 5px;
+        display: block;
+    }
+
+    /* Стили для полей формы */
+    .form-group input,
+    .form-group select {
+        width: 100%;
+        padding: 12px;
+        font-size: 1rem;
+        color: #555;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        transition: border-color 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+        border-color: #007bff;
+        outline: none;
+    }
+
+    /* Стили для кнопки отправки */
+    .btn-primary {
+        padding: 12px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 1.1rem;
+        transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+        transform: translateY(-2px);
+    }
+
+    /* Адаптивность для мобильных устройств */
+    @media (max-width: 768px) {
+        h1 {
+            font-size: 2rem;
+        }
+
+        .student-form {
+            padding: 20px;
+        }
+
+        .form-group label {
+            font-size: 1rem;
+        }
+
+        .form-group input,
+        .form-group select {
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            font-size: 1rem;
+        }
+    }
+</style>

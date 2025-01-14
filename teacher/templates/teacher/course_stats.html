@@ -1,0 +1,23 @@
+<h1>Statistics for {{ course.name }}</h1>
+<ul>
+    {% for stat in stats %}
+        <li>{{ stat.student }} - Grade: {{ stat.grade }} - Completed on: {{ stat.completion_date }}</li>
+    {% endfor %}
+</ul>
+
+<style>
+    h1 {
+        color: #343a40;
+    }
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    li {
+        font-size: 1rem;
+        color: #555;
+        margin: 5px 0;
+    }
+</style>

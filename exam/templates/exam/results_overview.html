@@ -1,0 +1,13 @@
+<div class="container mt-3">
+    <h5>
+        Your results:{{ course.title }}</h5>
+    <ul>
+        {% for result in results %}
+        <li>
+            {{ result.video.title }}: {{ result.score }} out of {{ result.total_questions }}. 
+            {% if result.passed %}Вы сдали тест!{% else %}Test failed{% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'course_page' course.slug %}">Return to course </a>
+</div>

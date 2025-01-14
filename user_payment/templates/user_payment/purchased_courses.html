@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purchased Courses</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(120deg, #f0f0f0, #ffffff);
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            padding: 50px 0;
+            color: #333;
+        }
+        .header h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .header p {
+            font-size: 1.2rem;
+            color: #777;
+        }
+        .course-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        .course-card {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        .course-card:hover {
+            transform: translateY(-10px);
+        }
+        .course-image {
+            width: 100%;
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+        }
+        .course-info {
+            padding: 20px;
+        }
+        .course-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        .course-info p {
+            font-size: 1rem;
+            color: #777;
+            margin-bottom: 20px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background-color 0.3s;
+            margin-right: 10px; 
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .review-buttons {
+            margin-top: 15px; 
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>Your Purchased Courses</h1>
+        <p>Here are the courses you've purchased and have access to.</p>
+    </div>
+
+    <div class="course-list">
+        {% for course in courses %}
+        <div class="course-card">
+            <div class="course-image" style="background-image: url('{{ course.thumbnail.url }}');"></div>
+            <div class="course-info">
+                <h3>{{ course.name }}</h3>
+                <p>{{ course.description }}</p>
+                <a href="{% url 'course_page' course.slug %}" class="btn">Go to Course</a>
+
+                <div class="review-buttons">
+                    <a href="{% url 'create_review' course.slug %}" class="btn">Leave a Review</a>
+                    <a href="{% url 'list_reviews' course.slug %}" class="btn">View Reviews</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+</body>
+</html>

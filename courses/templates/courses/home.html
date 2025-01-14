@@ -1,0 +1,149 @@
+{% extends 'courses/base.html' %}
+{% block title %}Courses
+{% endblock %}
+
+{% block content %}
+
+<style>
+    .container {
+        padding: 20px;
+    }
+
+    h1.display-4 {
+        text-align: center;
+        font-weight: bold;
+        color: #343a40;
+        margin-bottom: 30px;
+    }
+
+    .card {
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        transition: transform 0.3s, box-shadow 0.3s;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column; /* Enables vertical stacking */
+    }
+
+    .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-img-top {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+    .card-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #007bff;
+    }
+
+    .price {
+        font-size: 20px;
+        font-weight: bold;
+        color: #28a745;
+    }
+
+    .card-footer {
+        background-color: #f8f9fa;
+        border-top: 1px solid #ddd;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        display: flex; /* Use Flexbox for the footer */
+        justify-content: space-between; /* Space between the buttons */
+        align-items: center; /* Center buttons vertically */
+    }
+
+    .btn {
+        border-radius: 0;
+        padding: 10px;
+        font-size: 1rem;
+        flex: 1; /* Allow buttons to grow and fill the footer */
+        margin: 5px; /* Adds spacing around buttons */
+    }
+
+    .btn-light {
+        color: #007bff;
+        border: 1px solid #007bff;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    .btn-light:hover {
+        background-color: #007bff;
+        color: white;
+    }
+
+    .row {
+        display: flex;
+        flex-wrap: wrap; /* Allows items to wrap to the next line */
+        justify-content: center;
+        gap: 20px; /* Adds space between the cards */
+    }
+
+    .col {
+        flex: 0 0 calc(33.333% - 20px); /* Sets the width of the column to 33.333% minus the gap */
+        margin-bottom: 20px;
+    }
+
+    .card-body p {
+        margin: 0;
+    }
+
+    .discount {
+        font-size: 16px;
+        color: #dc3545;
+        font-weight: bold;
+    }
+
+    img {
+        display: flex;
+    }
+
+    @media (max-width: 768px) { /* Responsive design for smaller screens */
+        .col {
+            flex: 0 0 calc(50% - 20px); /* 2 columns on medium screens */
+        }
+    }
+
+    @media (max-width: 480px) { /* Responsive design for small screens */
+        .col {
+            flex: 0 0 calc(100% - 20px); /* 1 column on small screens */
+        }
+    }
+</style>
+
+<div class="container">
+    <h1 class="display-4">Courses</h1>
+    <br>
+    <div class="row">
+        {% for course in courses %}
+        <div class="col mx-auto">
+            <div class="card mx-auto" style="width: 100%;">
+                <img class="card-img-top" src="{{course.thumbnail.url}}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{course.name}}</h5>
+                    <p class="card-text">
+                        <p>Save {{course.discount}} %</p>
+                        <p class="price">
+                            {{course.price}} ₸
+                        </p>
+                    </p>
+                </div>
+                <div class="card-footer p-0">
+                    <div class="row no-gutters" style="width: 100%;">
+                        <a href="/check-out/{{course.slug}}" class="btn btn-light">Enroll Now</a>
+                        <a href="/course/{{course.slug}}" class="btn btn-light">Show More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,81 @@
+{% load static %}
+
+{% block body %}
+<body>
+  <div class="container payment-success">
+    <div class="success-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="green" width="72px" height="72px">
+        <path d="M0 0h24v24H0z" fill="none"/>
+        <path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm-1 17.27L4.73 11l1.41-1.41L11 14.45l6.88-6.88 1.41 1.41L11 17.27z"/>
+      </svg>
+    </div>
+    <h1>Payment Successful!</h1>
+    <p>Thank you for your purchase. Your payment was processed successfully.</p>
+    <a href="{% url 'home' %}" class="btn-home">Go Back to Home</a>
+  </div>
+</body>
+{% endblock %}
+
+<style>
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f9f9f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Main container for payment success message */
+.container.payment-success {
+  background-color: white;
+  padding: 40px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  width: 100%;
+}
+
+/* Success icon */
+.success-icon svg {
+  margin-bottom: 20px;
+}
+
+/* Success message styles */
+h1 {
+  font-size: 28px;
+  color: #28a745;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+/* Button styling */
+.btn-home {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #28a745;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-home:hover {
+  background-color: #218838;
+}
+
+</style>
